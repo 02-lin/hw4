@@ -1,0 +1,33 @@
+function Q3_Sobel
+[test3]=imread('C:\Users\lenovo\Desktop\数字图像处理\第四次作业\第4-次作业\test3_corrupt.pgm');
+[test4]=imread('C:\Users\lenovo\Desktop\数字图像处理\第四次作业\第4-次作业\test4 copy.bmp');
+[N1,M1]=size(test3);[N2,M2]=size(test4);
+I3=double(test3);I4=double(test4);
+h1=[-1,0,1;-2,0,2;-1,0,1];
+h2=[-1,-2,-1;0,0,0;1,2,1];
+g3x=conv2(I3,h1,'same');
+g3y=conv2(I3,h2,'same');
+F3=abs(g3x)+abs(g3y);
+for i=1:N1
+    for j=1:M1
+        I3(i,j)=F3(i,j);
+    end
+end
+I3=uint8(I3);
+
+g4x=conv2(I4,h1,'same');
+g4y=conv2(I4,h2,'same');
+F4=abs(g4x)+abs(g4y);
+for i=1:N2
+    for j=1:M2
+        I4(i,j)=F4(i,j);
+    end
+end
+I4=uint8(I4);
+
+figure(1);
+subplot(1,2,1);imshow(test3);title('test 3 原始');
+subplot(1,2,2);imshow(I3);title('test 3 sobel');
+figure(2);
+subplot(1,2,1);imshow(test4);title('test 4 原始');
+subplot(1,2,2);imshow(I4);title('test 4 sobel');

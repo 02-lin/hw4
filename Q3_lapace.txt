@@ -1,0 +1,25 @@
+function Q3_lapace
+[test3]=imread('C:\Users\lenovo\Desktop\数字图像处理\第四次作业\第4-次作业\test3_corrupt.pgm');
+[test4]=imread('C:\Users\lenovo\Desktop\数字图像处理\第四次作业\第4-次作业\test4 copy.bmp','bmp');
+[n1,m1]=size(test3);[n2,m2]=size(test4);
+figure(1);
+subplot(1,2,1);imshow(test3);title('test3 原始');
+subplot(1,2,2);imshow(test4);title('test4 原始');
+t1=test3;t2=test4;
+for i=2:n1-1
+    for j=2:m1-1
+        test3(i,j)=t1(i+1,j)+t1(i-1,j)+t1(i,j+1)+t1(i,j-1)-4*t1(i,j);
+    end
+end
+for i=2:n2-1
+    for j=2:m2-1
+        test4(i,j)=t2(i+1,j)+t2(i-1,j)+t2(i,j+1)+t2(i,j-1)-4*t2(i,j);
+    end
+end
+figure(2);
+subplot(1,2,1);imshow(test3);title('test3 lapace');
+subplot(1,2,2);imshow(test4);title('test4 lapace');
+
+
+        
+

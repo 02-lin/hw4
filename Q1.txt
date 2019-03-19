@@ -1,0 +1,67 @@
+function Q1
+%----分别用高斯滤波器和中值滤波器去平滑测试图像test1和2，模板大小分别是3x3 ， 5x5 ，7x7； ------
+%==================gauss=====================
+[test1,map1]=imread('C:\Users\lenovo\Desktop\数字图像处理\第四次作业\第4-次作业\test1.pgm');
+[test2,map2]=imread('C:\Users\lenovo\Desktop\数字图像处理\第四次作业\第4-次作业\test2.tif');
+%----gauss 3*3--------------------------------------------
+h=fspecial('gaussian',[3 3],1);%建一个3*3模板的高斯滤波器
+%为高斯低通滤波，有两个参数，hsize表示模板尺寸，默认值为【3 3】，sigma为滤波器的标准值，单位为像素，默认值为0.5.
+% H = FSPECIAL('gaussian',HSIZE,SIGMA) returns a rotationally
+I1=imfilter(test1,h,'conv');
+I2=imfilter(test2,h,'conv');
+%g=imfilter(f,w,filtering_mode,boundary_options,size_optinos) 
+%：f是输入图像，w为滤波模板，g为滤波结果；此处conv代表使用卷积完成滤波
+figure(1);
+subplot(1,2,1);imshow(test1,map1);title('test1 原始');
+subplot(1,2,2);imshow(I1,map1);title('test1 gauss 3*3');
+figure(2);
+subplot(1,2,1);imshow(test2,map2);title('test2 原始');
+subplot(1,2,2);imshow(I2,map2);title('test2 gauss 3*3');
+
+%----gauss 5*5--------------------------------------------
+h1=fspecial('gaussian',[5 5],1);%建一个3*3模板的高斯滤波器
+I10=imfilter(test1,h1,'conv');
+I20=imfilter(test2,h1,'conv');
+figure(3);
+subplot(1,2,1);imshow(test1,map1);title('test1 原始');
+subplot(1,2,2);imshow(I10,map1);title('test1 gauss 5*5');
+figure(4);
+subplot(1,2,1);imshow(test2,map2);title('test2 原始');
+subplot(1,2,2);imshow(I20,map2);title('test2 gauss 5*5');
+
+%----gauss 7*7--------------------------------------------
+h2=fspecial('gaussian',[7 7],1);%建一个3*3模板的高斯滤波器
+I11=imfilter(test1,h2,'conv');
+I21=imfilter(test2,h2,'conv');
+figure(5);
+subplot(1,2,1);imshow(test1,map1);title('test1 原始');
+subplot(1,2,2);imshow(I11,map1);title('test1 gauss 7*7');
+figure(6);
+subplot(1,2,1);imshow(test2,map2);title('test2 原始');
+subplot(1,2,2);imshow(I21,map2);title('test2 gauss 7*7');
+%===========================================================
+%======median filter========================================
+M13=medfilt2(test1,[3 3]);
+M23=medfilt2(test2,[3 3]);
+M15=medfilt2(test1,[5 5]);
+M25=medfilt2(test2,[5 5]);
+M17=medfilt2(test1,[7 7]);
+M27=medfilt2(test2,[7 7]);
+figure(7);
+subplot(1,2,1);imshow(test1,map1);title('test1 原始');
+subplot(1,2,2);imshow(M13,map1);title('test1 median 3*3');
+figure(8);
+subplot(1,2,1);imshow(test2,map2);title('test2 原始');
+subplot(1,2,2);imshow(M23,map2);title('test2 median 3*3');
+figure(9);
+subplot(1,2,1);imshow(test1,map1);title('test1 原始');
+subplot(1,2,2);imshow(M15,map1);title('test1 median 5*5');
+figure(10);
+subplot(1,2,1);imshow(test2,map2);title('test2 原始');
+subplot(1,2,2);imshow(M25,map2);title('test2 median 5*5');
+figure(11);
+subplot(1,2,1);imshow(test1,map1);title('test1 原始');
+subplot(1,2,2);imshow(M17,map1);title('test1 median 7*7');
+figure(12);
+subplot(1,2,1);imshow(test2,map2);title('test2 原始');
+subplot(1,2,2);imshow(M27,map2);title('test2 median 7*7');

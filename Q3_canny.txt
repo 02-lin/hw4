@@ -1,0 +1,11 @@
+function Q3_canny
+[test3]=imread('C:\Users\lenovo\Desktop\数字图像处理\第四次作业\第4-次作业\test3_corrupt.pgm');
+[test4]=imread('C:\Users\lenovo\Desktop\数字图像处理\第四次作业\第4-次作业\test4 copy.bmp','bmp');
+I01=edge(test3,'canny');
+I02=edge(test4,'canny');
+figure(1);
+subplot(1,2,1);imshow(test3);title('test3 原始');
+subplot(1,2,2);imshow(I01);title('test3 canny');
+figure(2);
+subplot(1,2,1);imshow(test4);title('test4 原始');
+subplot(1,2,2);imshow(I02);title('test4 canny');

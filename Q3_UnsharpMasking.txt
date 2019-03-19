@@ -1,0 +1,15 @@
+function Q3_UnsharpMasking
+[test3,map3]=imread('C:\Users\lenovo\Desktop\数字图像处理\第四次作业\第4-次作业\test3_corrupt.pgm');
+[test4,map4]=imread('C:\Users\lenovo\Desktop\数字图像处理\第四次作业\第4-次作业\test4 copy.bmp');
+h=fspecial('gaussian',[5 5],1);
+I1=single(test3);
+I2=single(test4);
+O1=imfilter(I1,h);
+O2=imfilter(I2,h);
+UM1=I1-O1;UM2=I2-O2;
+figure(1);
+subplot(1,2,1);imshow(test3,map3);title('test3 原始');
+subplot(1,2,2);imshow(O1,map3);title('test3 unsharpmasking');
+figure(2);
+subplot(1,2,1);imshow(test4,map4);title('test4 原始');
+subplot(1,2,2);imshow(O2,map4);title('test4 unsharpmasking');

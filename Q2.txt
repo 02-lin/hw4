@@ -1,0 +1,24 @@
+function Q2
+%--------利用固定方差 sigma=1.5产生高斯滤波器--------------------------
+n01=3;sigma01=1.5;n02=3;sigma02=1.5;
+[test1,map1]=imread('C:\Users\lenovo\Desktop\数字图像处理\第四次作业\第4-次作业\test1.pgm');
+[test2,map2]=imread('C:\Users\lenovo\Desktop\数字图像处理\第四次作业\第4-次作业\test2.tif');
+r=[1,0,0,1];
+
+for i=1:n02
+    for j=1:n01
+        u=r.*[j-(n01+1)/2 i-(n02+1)/2]';
+        h(i,j)=exp(-u(1)^2/(2*sigma01^2))/(sigma01*sqrt(2*pi))*exp(-u(2)^2/(2*sigma02^2))/(sigma02*sqrt(2*pi));
+    end
+end
+h=h/sqrt(sum(sum(h.*h)));
+f1=conv2(double(test1),double(h),'same');
+f2=conv2(double(test2),double(h),'same');
+figure(1);
+subplot(1,2,1);imshow(test1,map1);title('test1 原图');
+subplot(1,2,2);imshow(f1,map1);title('test 1 sigma 1.5 guasss');
+figure(2);
+subplot(1,2,1);imshow(test2,map2);title('test2 原图');
+subplot(1,2,2);imshow(f2,map2);title('test 3 sigma 1.5 guass');
+
+        
